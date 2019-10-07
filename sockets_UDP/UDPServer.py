@@ -9,7 +9,7 @@ class UDP_Server:
 		self.puertoServer = puerto
 
 	def inicio(self):   
-
+		# SOCK_DGRAM: Este protocolo nos da una conexión no fiable. (UDP)
 		serverSocketUDP = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 		serverSocketUDP.bind((self.ipServer, self.puertoServer))
