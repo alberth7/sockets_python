@@ -1,5 +1,5 @@
 import socket
-
+import codecs
 class TCP_Client:
 
     def __init__(self, nombreDelServer, puertoDelServer):
@@ -10,13 +10,18 @@ class TCP_Client:
 
         clienteSocketTCP = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         clienteSocketTCP.connect((self.ip, self.puerto))
-        mensaje_request = " soy un cliente"
-        clienteSocketTCP.send(mensaje_request.encode())
-        mensajeRecivido = clienteSocketTCP.recv(1024)
-        print(mensajeRecivido.decode())
+        mensaje_Response = clienteSocketTCP.recv(1024).decode('utf-8')
+        print( mensaje_Response)
+        
+        mensaje_Request = input("mensaje a enviar: ")
+        clienteSocketTCP.send(mensaje_Request.encode('utf-8'))
+        
+        mensaje_Response = clienteSocketTCP.recv(1024).decode('utf-8')
+        print( mensaje_Response)
         clienteSocketTCP.close()
 
+    
 class MainTCP_Client:
-    c = TCP_Client("127.0.0.1", 5030)
+    c = TCP_Client("127.0.0.1", 5055)
     c.iniciar()
 
